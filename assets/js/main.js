@@ -32,6 +32,19 @@
 
    'use strict'
 
+
+   /**
+    * abrir menu mobiile
+    */
+    $('#masthead .mob_menu-ico input').change(function(){
+        if($(this).is(':checked')){
+            $('#masthead').addClass('mobile-open')
+        }
+        else {
+            $('#masthead').removeClass('mobile-open')
+        }
+    });
+
    
 /*------------------------------------------------------------------------------*/
 /* 01. Newsletter Popup
@@ -51,6 +64,12 @@
 /* 02. Fixed-header
 /*------------------------------------------------------------------------------*/
     $(window).scroll(function(){
+        // quando rolar a pagina e o menu-mobile estiver aberto.. sera fechado
+        if($('#masthead .mob_menu-ico input').is(':checked')){
+            $('#masthead .mob_menu-ico input').prop('checked', false)
+            $('#masthead').removeClass('mobile-open')
+        }
+
         if ( matchMedia( 'only screen and (min-width: 1200px)' ).matches ) 
         {
             if ($(window).scrollTop() >= 50 ) {
